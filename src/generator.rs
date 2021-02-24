@@ -1,9 +1,9 @@
-use std::{convert::TryInto, i128};
+use std::convert::TryInto;
 
 pub struct Generator {
-    pub current: i128,
-    pub max: i128,
-    pub match_against: Vec<(String, i128)>,
+    pub current: u64,
+    pub max: u64,
+    pub match_against: Vec<(String, u64)>,
 }
 
 impl Iterator for Generator {

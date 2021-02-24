@@ -1,8 +1,6 @@
 mod cli;
 mod generator;
 
-use std::convert::TryInto;
-
 use cli::Cli;
 use generator::Generator;
 use indicatif::{ProgressBar, ProgressIterator, ProgressStyle};
@@ -19,7 +17,7 @@ fn main() {
         current: cli.min,
     };
 
-    let bar = ProgressBar::new(cli.max.try_into().unwrap()).with_style(
+    let bar = ProgressBar::new(cli.max).with_style(
         ProgressStyle::default_bar()
             .template("[{elapsed_precise}] {bar:50.cyan/blue} {pos:>7}/{len:7} {msg}")
             .progress_chars("##-"),
