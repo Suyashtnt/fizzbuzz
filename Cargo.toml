@@ -1,0 +1,12 @@
+[package]
+name = "fizzbuzz"
+version = "0.1.0"
+authors = ["Suyashtnt <suyashtnt@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+indicatif = "0.15.0"
+structopt = "0.3.21"
+strum = "0.20.0"
