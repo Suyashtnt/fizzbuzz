@@ -36,9 +36,6 @@ impl Iterator for Generator {
     }
 
     fn size_hint(&self) -> (usize, Option<usize>) {
-        (
-            self.max.try_into().unwrap(),
-            Some(self.max.try_into().unwrap()),
-        )
+        (self.max.try_into().unwrap(), self.max.try_into().ok())
     }
 }

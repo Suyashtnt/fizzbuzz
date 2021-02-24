@@ -64,11 +64,10 @@ checksum = "a357d28ed41a50f9c765dbfe56cbc04a64e53e5fc58ba79fbc34c10ef3df831f"
 
 [[package]]
 name = "fizzbuzz"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "indicatif",
  "structopt",
- "strum",
 ]
 
 [[package]]
@@ -205,12 +204,6 @@ dependencies = [
  "quote",
  "syn",
 ]
-
-[[package]]
-name = "strum"
-version = "0.20.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7318c509b5ba57f18533982607f24070a55d353e90d4cae30c467cdb2ad5ac5c"
 
 [[package]]
 name = "syn"

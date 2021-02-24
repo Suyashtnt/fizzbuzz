@@ -19,16 +19,20 @@ fn main() {
         current: cli.min,
     };
 
-    let mut value = String::new();
     let bar = ProgressBar::new(cli.max.try_into().unwrap()).with_style(
         ProgressStyle::default_bar()
             .template("[{elapsed_precise}] {bar:50.cyan/blue} {pos:>7}/{len:7} {msg}")
             .progress_chars("##-"),
     );
 
-    for val in gen.progress_with(bar.clone()) {
-        bar.set_message(&*val);
-        value += &format!("{}\n", val);
-    }
+    let value = gen
+        .progress_with(bar.clone())
+        .map(|val| {
+            bar.set_message(&*val);
+            val
+        })
+        .collect::<Vec<String>>()
+        .join("\n");
+
     println!("{}", value);
 }
