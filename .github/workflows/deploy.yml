@@ -75,7 +75,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           cd target/${{ matrix.target }}/release
-          strip glitter.exe
+          strip fizzbuzz.exe
           7z a ../../../${{ matrix.name }} fizzbuzz.exe
           cd -
       - name: Post Build | Prepare artifacts [-nix]
@@ -83,7 +83,7 @@ jobs:
         run: |
           cd target/${{ matrix.target }}/release
           # TODO: investigate better cross platform stripping
-          strip glitter || true
+          strip fizzbuzz || true
           tar czvf ../../../${{ matrix.name }} fizzbuzz
           cd -
       - name: Deploy | Upload artifacts
@@ -121,7 +121,7 @@ jobs:
       - name: Build | Publish
         uses: softprops/action-gh-release@v1
         with:
-          files: glitter-*/glitter-*
+          files: fizzbuzz-*/fizzbuzz-*
           body_path: RELEASE.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,7 +1,7 @@
 style: github
 template: RELEASE.tpl.md
 info:
-  repository_url: https://github.com/Milo123459/glitter
+  repository_url: https://github.com/suyashtnt/fizzbuzz
 options:
   commits:
   commit_groups:
