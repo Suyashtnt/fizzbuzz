@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 indicatif = {version = "0.15.0"}
-structopt = "0.3.21"
+structopt = "0.3.23"
