@@ -1,6 +1,6 @@
 [package]
 name = "fizzbuzz"
-version = "0.1.1"
+version = "0.1.4"
 authors = ["Suyashtnt <suyashtnt@gmail.com>"]
 edition = "2021"
 
