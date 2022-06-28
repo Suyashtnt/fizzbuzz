@@ -1,10 +1,10 @@
 mod cli;
 mod generator;
 
+use clap::Parser;
 use cli::Cli;
 use generator::Generator;
 use indicatif::{ProgressBar, ProgressIterator, ProgressStyle};
-use structopt::StructOpt;
 
 fn main() {
     let cli: Cli = Cli::from_args();

@@ -8,11 +8,14 @@ edition = "2021"
 
 [dependencies]
 indicatif = { version = "0.16" }
-structopt = "0.3"
+clap = { version = "3.0", features = ["derive"] }
+
+[dev-dependencies]
+trycmd = "0.13"
 
 # super fast release profile
 [profile.release]
 lto = "thin"
-optlevel = 3
+opt-level = 3
 debug = false
 panic = "abort"

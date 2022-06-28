@@ -1,5 +1,6 @@
-use std::error::Error;
-use structopt::StructOpt;
+use clap::StructOpt;
+use std::{error::Error, str::FromStr};
+
 #[derive(Debug, StructOpt)]
 pub struct Cli {
     /// minimum value as an integar
@@ -15,12 +16,16 @@ pub struct Cli {
     pub defines: Option<Vec<(String, u64)>>,
 }
 
-fn parse_key_val<T, U>(s: &str) -> Result<(T, U), Box<dyn Error>>
+fn parse_key_val<T, U>(s: &str) -> Result<(T, U), Box<dyn Error + Send + Sync>>
 where
-    T: std::str::FromStr,
+    T: FromStr,
     T::Err: Error + 'static,
-    U: std::str::FromStr,
+    U: FromStr,
     U::Err: Error + 'static,
+    <T as FromStr>::Err: Send,
+    <T as FromStr>::Err: Sync,
+    <U as FromStr>::Err: Send,
+    <U as FromStr>::Err: Sync,
 {
     let pos = s
         .find('=')
@@ -48,5 +53,11 @@ mod tests {
                 .to_string(),
             "invalid KEY=value: no `=` found in `fizz`".to_string()
         );
+    }
+
+    #[test]
+    fn verify_app() {
+        use clap::IntoApp;
+        Cli::into_app().debug_assert()
     }
 }
