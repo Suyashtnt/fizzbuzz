@@ -26,6 +26,9 @@ this is a fizzbuzz CLI. That is overengineered Including:
 
 ## FAQ
 
+## where macOS build
+Non existent for now because github actions are failing. Build it yourself
+
 ### why?
 why not
 
