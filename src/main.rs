@@ -26,7 +26,7 @@ fn main() {
     let value = gen
         .progress_with(bar.clone())
         .map(|val| {
-            bar.set_message(&*val);
+            bar.set_message(val.clone());
             val
         })
         .collect::<Vec<String>>()
