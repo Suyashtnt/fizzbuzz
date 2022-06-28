@@ -39,3 +39,72 @@ impl Iterator for Generator {
         (self.max.try_into().unwrap(), self.max.try_into().ok())
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn can_generate_until_10() {
+        let mut gen = Generator {
+            current: 0,
+            max: 10,
+            match_against: vec![("Fizz".to_string(), 3), ("Buzz".to_string(), 5)],
+        };
+
+        let mut output = String::new();
+
+        for _ in 0..10 {
+            output += &gen.next().unwrap();
+            output += "\n"
+        }
+
+        assert_eq!(output, "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n");
+    }
+
+    #[test]
+    fn can_generate_until_15() {
+        let mut gen = Generator {
+            current: 0,
+            max: 15,
+            match_against: vec![("Fizz".to_string(), 3), ("Buzz".to_string(), 5)],
+        };
+
+        let mut output = String::new();
+
+        for _ in 0..15 {
+            output += &gen.next().unwrap();
+            output += "\n"
+        }
+
+        assert_eq!(
+            output,
+            "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
+        );
+    }
+
+    #[test]
+    fn can_do_fuzz() {
+        let mut gen = Generator {
+            current: 0,
+            max: 15,
+            match_against: vec![
+                ("Fizz".to_string(), 3),
+                ("Buzz".to_string(), 5),
+                ("Fuzz".to_string(), 7),
+            ],
+        };
+
+        let mut output = String::new();
+
+        for _ in 0..15 {
+            output += &gen.next().unwrap();
+            output += "\n"
+        }
+
+        assert_eq!(
+            output,
+            "1\n2\nFizz\n4\nBuzz\nFizz\nFuzz\n8\nFizz\nBuzz\n11\nFizz\n13\nFuzz\nFizzBuzz\n"
+        );
+    }
+}

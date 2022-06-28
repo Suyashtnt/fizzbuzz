@@ -9,3 +9,10 @@ edition = "2021"
 [dependencies]
 indicatif = { version = "0.16" }
 structopt = "0.3"
+
+# super fast release profile
+[profile.release]
+lto = "thin"
+optlevel = 3
+debug = false
+panic = "abort"

@@ -27,3 +27,26 @@ where
         .ok_or_else(|| format!("invalid KEY=value: no `=` found in `{}`", s))?;
     Ok((s[..pos].parse()?, s[pos + 1..].parse()?))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parse_key_val() {
+        assert_eq!(
+            parse_key_val("fizz=3").unwrap(),
+            ("fizz".to_string(), "3".to_string())
+        );
+    }
+
+    #[test]
+    fn test_parse_key_val_error() {
+        assert_eq!(
+            parse_key_val::<String, i32>("fizz")
+                .unwrap_err()
+                .to_string(),
+            "invalid KEY=value: no `=` found in `fizz`".to_string()
+        );
+    }
+}
