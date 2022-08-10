@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, iter::TrustedLen};
 
 pub struct Generator {
     pub current: usize,
@@ -21,6 +21,10 @@ impl ExactSizeIterator for Generator {
         self.max
     }
 }
+
+/// SAFETY: should be safe as the implementation of the generators Iterator#size_hint is always
+/// accurate
+unsafe impl TrustedLen for Generator {  }
 
 impl Iterator for Generator {
     type Item = String;
@@ -45,6 +49,10 @@ impl Iterator for Generator {
         }
 
         Some(output)
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        (self.max, Some(self.max))
     }
 }
 
