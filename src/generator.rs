@@ -23,7 +23,8 @@ impl ExactSizeIterator for Generator {
 }
 
 /// SAFETY: should be safe as the implementation of the generators Iterator#size_hint is always
-/// accurate
+/// accurate. This can be seen by looking at the implementation, where we notice that all it does
+/// is return known arguments, therefore it is safe
 unsafe impl TrustedLen for Generator {  }
 
 impl Iterator for Generator {
