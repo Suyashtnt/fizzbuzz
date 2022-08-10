@@ -1,7 +1,19 @@
+use std::collections::HashMap;
+
 pub struct Generator {
     pub current: usize,
     pub max: usize,
-    pub match_against: Vec<(String, usize)>,
+    pub match_against: HashMap<String, usize>,
+}
+
+impl Generator {
+    pub fn new(min: Option<usize>, max: usize, matches: HashMap<String, usize>) -> Self {
+        Self {
+            current: min.unwrap_or(0),
+            max,
+            match_against: matches
+        }
+    }
 }
 
 impl ExactSizeIterator for Generator {
@@ -40,12 +52,39 @@ impl Iterator for Generator {
 mod tests {
     use super::*;
 
+    // from https://docs.rs/map-macro/latest/map_macro/index.html
+    macro_rules! map {
+      (@to_unit $($_:tt)*) => (());
+      (@count $($tail:expr),*) => (
+        <[()]>::len(&[$(map!(@to_unit $tail)),*])
+      );
+
+      {$($k: expr => $v: expr),* $(,)?} => {
+        {
+          let mut map = std::collections::HashMap::with_capacity(
+            map!(@count $($k),*),
+          );
+
+          $(
+            map.insert($k, $v);
+          )*
+
+          map
+        }
+      };
+    }
+
     #[test]
     fn can_generate_until_10() {
+        let fizzbuzz_matcher = map! { 
+            "Buzz".to_string() => 5,
+            "Fizz".to_string() => 3 
+        };
+
         let mut gen = Generator {
             current: 0,
             max: 10,
-            match_against: vec![("Fizz".to_string(), 3), ("Buzz".to_string(), 5)],
+            match_against: fizzbuzz_matcher,
         };
 
         let mut output = String::new();
@@ -60,10 +99,15 @@ mod tests {
 
     #[test]
     fn can_generate_until_15() {
+        let fizzbuzz_matcher = map! { 
+            "Buzz".to_string() => 5,
+            "Fizz".to_string() => 3 
+        };
+
         let mut gen = Generator {
             current: 0,
             max: 15,
-            match_against: vec![("Fizz".to_string(), 3), ("Buzz".to_string(), 5)],
+            match_against: fizzbuzz_matcher,
         };
 
         let mut output = String::new();
@@ -81,14 +125,16 @@ mod tests {
 
     #[test]
     fn can_do_fuzz() {
+        let fizzbuzzfuzz_matcher = map! { 
+            "Buzz".to_string() => 5,
+            "Fizz".to_string() => 3,
+            "Fuzz".to_string() => 7
+        };
+
         let mut gen = Generator {
             current: 0,
             max: 15,
-            match_against: vec![
-                ("Fizz".to_string(), 3),
-                ("Buzz".to_string(), 5),
-                ("Fuzz".to_string(), 7),
-            ],
+            match_against: fizzbuzzfuzz_matcher,
         };
 
         let mut output = String::new();

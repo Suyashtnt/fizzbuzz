@@ -7,14 +7,20 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-indicatif = { version = "0.16" }
-clap = { version = "3.0", features = ["derive"] }
+indicatif = { version = "0.17.0" }
+clap = { version = "3.2.16", features = ["derive"] }
 
 [dev-dependencies]
-trycmd = "0.13"
+trycmd = "0.13.5"
+criterion = "0.3.6"
+
+[[bench]]
+name = "fizzbuzz_benchmark"
+harness = false
 
 # super fast release profile
 [profile.release]
+codegen-units = 1
 lto = "thin"
 opt-level = 3
 debug = false
