@@ -12,6 +12,8 @@ pub struct Cli {
     ///
     /// syntax: replace=number
     ///
+    /// ORDERING MATTERS. If you do Buzz=5 Fizz=3, you will get BuzzFizz
+    ///
     /// example: fizzbuzz 0 10 -d fizz=3 buzz=5 bazz=7
     pub defines: Option<Vec<(String, usize)>>,
 }

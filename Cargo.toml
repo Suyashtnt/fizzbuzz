@@ -13,6 +13,7 @@ clap = { version = "3.2.16", features = ["derive"] }
 [dev-dependencies]
 trycmd = "0.13.5"
 criterion = "0.3.6"
+pretty_assertions = "1.2.1"
 
 [[bench]]
 name = "fizzbuzz_benchmark"

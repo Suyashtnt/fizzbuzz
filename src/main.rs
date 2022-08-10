@@ -10,9 +10,7 @@ fn main() {
         Some(cli.max),
         cli.min,
         cli.defines
-            .unwrap_or_else(|| vec![("Buzz".to_string(), 5), ("Fizz".to_string(), 3)])
-            .into_iter()
-            .collect(),
+            .unwrap_or_else(|| vec![("Fizz".to_string(), 3), ("Buzz".to_string(), 5)]),
     );
 
     // SAFETY: 128 bit computers don't exist yet, so this is safe for now

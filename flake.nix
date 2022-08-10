@@ -21,6 +21,10 @@
   outputs = { self, nixpkgs, crane, flake-utils, advisory-db, rust-overlay, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
+        nightlyRust = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+          extensions = [ "rustfmt" ];
+        });
+
         overlays = [ (import rust-overlay) ];
         pkgs = import nixpkgs {
           inherit system overlays;
@@ -28,7 +32,7 @@
 
         inherit (pkgs) lib;
 
-        craneLib = crane.lib.${system};
+        craneLib = (crane.mkLib pkgs).overrideToolchain nightlyRust;
         src = ./.;
 
         cargoArtifacts = craneLib.buildDepsOnly {
@@ -77,9 +81,7 @@
           inputsFrom = builtins.attrValues self.checks;
 
           nativeBuildInputs = with pkgs; [
-            (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
-              extensions = [ "rustfmt" ];
-            }))
+            nightlyRust
 
             rnix-lsp
             rust-analyzer
