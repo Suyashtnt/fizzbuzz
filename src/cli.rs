@@ -16,6 +16,9 @@ pub struct Cli {
     ///
     /// example: fizzbuzz 0 10 -d fizz=3 buzz=5 bazz=7
     pub defines: Option<Vec<(String, usize)>>,
+    /// Prints the values as they are computed instead of all at once.
+    #[structopt(short, long)]
+    pub print_instantly: bool
 }
 
 fn parse_key_val<T, U>(s: &str) -> Result<(T, U), Box<dyn Error + Send + Sync>>
