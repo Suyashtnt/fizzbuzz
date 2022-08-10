@@ -44,7 +44,6 @@ fn criterion_benchmark(c: &mut Criterion) {
         let generator = Generator::new(None, black_box(100), black_box(fizzbuzzbazz_matcher.clone()));
         generator.collect::<String>()
     }));
-
 }
 
 criterion_group!(benches, criterion_benchmark);

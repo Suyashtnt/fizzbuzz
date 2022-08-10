@@ -10,6 +10,7 @@
     };
 
     flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
 
     advisory-db = {
       url = "github:rustsec/advisory-db";
@@ -17,11 +18,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, crane, flake-utils, advisory-db, ... }:
+  outputs = { self, nixpkgs, crane, flake-utils, advisory-db, rust-overlay, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
+        overlays = [ (import rust-overlay) ];
         pkgs = import nixpkgs {
-          inherit system;
+          inherit system overlays;
         };
 
         inherit (pkgs) lib;
@@ -75,8 +77,9 @@
           inputsFrom = builtins.attrValues self.checks;
 
           nativeBuildInputs = with pkgs; [
-            cargo
-            rustc
+            (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+              extensions = [ "rustfmt" ];
+            }))
 
             rnix-lsp
             rust-analyzer

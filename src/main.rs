@@ -9,8 +9,7 @@ fn main() {
     let gen = Generator::new(
         Some(cli.max),
         cli.min,
-        cli
-            .defines
+        cli.defines
             .unwrap_or_else(|| vec![("Buzz".to_string(), 5), ("Fizz".to_string(), 3)])
             .into_iter()
             .collect(),
