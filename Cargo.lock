@@ -113,6 +113,7 @@ dependencies = [
  "libc",
  "once_cell",
  "terminal_size",
+ "unicode-width",
  "winapi",
 ]
 
@@ -273,14 +274,13 @@ dependencies = [
 
 [[package]]
 name = "indicatif"
-version = "0.16.2"
+version = "0.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d207dc617c7a380ab07ff572a6e52fa202a2a8f355860ac9c38e23f8196be1b"
+checksum = "fcc42b206e70d86ec03285b123e65a5458c92027d1fb2ae3555878b8113b3ddf"
 dependencies = [
  "console",
- "lazy_static",
  "number_prefix",
- "regex",
+ "unicode-width",
 ]
 
 [[package]]
@@ -300,12 +300,6 @@ checksum = "a9a9d19fa1e79b6215ff29b9d6880b706147f16e9b1dbb1e4e5947b5b02bc5e3"
 dependencies = [
  "either",
 ]
-
-[[package]]
-name = "lazy_static"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
@@ -446,21 +440,6 @@ checksum = "fb5a58c1855b4b6819d59012155603f0b22ad30cad752600aadfcb695265519a"
 dependencies = [
  "bitflags",
 ]
-
-[[package]]
-name = "regex"
-version = "1.6.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c4eb3267174b8c6c2f654116623910a0fef09c4753f8dd83db29c48a0df988b"
-dependencies = [
- "regex-syntax",
-]
-
-[[package]]
-name = "regex-syntax"
-version = "0.6.27"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3f87b73ce11b1619a3c6332f45341e0047173771e8b8b73f87bfeefb7b56244"
 
 [[package]]
 name = "remove_dir_all"
@@ -633,6 +612,12 @@ name = "unicode-ident"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c4f5b37a154999a8f3f98cc23a628d850e154479cd94decf3414696e12e31aaf"
+
+[[package]]
+name = "unicode-width"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3ed742d4ea2bd1176e236172c8429aaf54486e7ac098db29ffe6529e0ce50973"
 
 [[package]]
 name = "version_check"
