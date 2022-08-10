@@ -4,16 +4,16 @@ use std::{error::Error, str::FromStr};
 #[derive(Debug, StructOpt)]
 pub struct Cli {
     /// minimum value as an integar
-    pub min: u64,
+    pub min: usize,
     /// minimum value as an integar
-    pub max: u64,
+    pub max: usize,
     #[structopt(short, long, parse(try_from_str = parse_key_val))]
     /// create custom matchers
     ///
     /// syntax: replace=number
     ///
     /// example: fizzbuzz 0 10 -d fizz=3 buzz=5 bazz=7
-    pub defines: Option<Vec<(String, u64)>>,
+    pub defines: Option<Vec<(String, usize)>>,
 }
 
 fn parse_key_val<T, U>(s: &str) -> Result<(T, U), Box<dyn Error + Send + Sync>>

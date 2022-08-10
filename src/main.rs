@@ -12,12 +12,12 @@ fn main() {
     let gen = Generator {
         match_against: cli
             .defines
-            .unwrap_or(vec![("Buzz".to_string(), 5), ("Fizz".to_string(), 3)]),
+            .unwrap_or_else(|| vec![("Buzz".to_string(), 5), ("Fizz".to_string(), 3)]),
         max: cli.max,
         current: cli.min,
     };
 
-    let bar = ProgressBar::new(cli.max).with_style(
+    let bar = ProgressBar::new(cli.max.try_into().expect("Usize too big")).with_style(
         ProgressStyle::default_bar()
             .template("[{elapsed_precise}] {bar:50.cyan/blue} {pos:>7}/{len:7} {msg}")
             .progress_chars("##-"),

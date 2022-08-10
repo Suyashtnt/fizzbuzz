@@ -1,9 +1,13 @@
-use std::convert::TryInto;
-
 pub struct Generator {
-    pub current: u64,
-    pub max: u64,
-    pub match_against: Vec<(String, u64)>,
+    pub current: usize,
+    pub max: usize,
+    pub match_against: Vec<(String, usize)>,
+}
+
+impl ExactSizeIterator for Generator {
+    fn len(&self) -> usize {
+        self.max
+    }
 }
 
 impl Iterator for Generator {
@@ -24,19 +28,11 @@ impl Iterator for Generator {
             }
         }
 
-        if output == "" {
+        if output.is_empty() {
             output = self.current.to_string();
         }
 
         Some(output)
-    }
-
-    fn count(self) -> usize {
-        return self.max.try_into().unwrap();
-    }
-
-    fn size_hint(&self) -> (usize, Option<usize>) {
-        (self.max.try_into().unwrap(), self.max.try_into().ok())
     }
 }
 
