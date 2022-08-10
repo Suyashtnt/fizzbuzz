@@ -35,7 +35,9 @@ this is a fizzbuzz CLI. That is overengineered Including:
 Non existent for now because github actions are failing. Build it yourself
 
 ### why?
-why not
+why not.
+
+On a more serious note, this is usually where I test random things and try out new rust utils.
 
 ### why not use xxx
 use it if you want (but idk when someone will need a fizzbuzz generator)
