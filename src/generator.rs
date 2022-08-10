@@ -11,7 +11,7 @@ impl Generator {
         Self {
             current: min.unwrap_or(0),
             max,
-            match_against: matches
+            match_against: matches,
         }
     }
 }
@@ -25,7 +25,7 @@ impl ExactSizeIterator for Generator {
 /// SAFETY: should be safe as the implementation of the generators Iterator#size_hint is always
 /// accurate. This can be seen by looking at the implementation, where we notice that all it does
 /// is return known arguments, therefore it is safe
-unsafe impl TrustedLen for Generator {  }
+unsafe impl TrustedLen for Generator {}
 
 impl Iterator for Generator {
     type Item = String;
@@ -85,9 +85,9 @@ mod tests {
 
     #[test]
     fn can_generate_until_10() {
-        let fizzbuzz_matcher = map! { 
+        let fizzbuzz_matcher = map! {
             "Buzz".to_string() => 5,
-            "Fizz".to_string() => 3 
+            "Fizz".to_string() => 3
         };
 
         let mut gen = Generator {
@@ -108,9 +108,9 @@ mod tests {
 
     #[test]
     fn can_generate_until_15() {
-        let fizzbuzz_matcher = map! { 
+        let fizzbuzz_matcher = map! {
             "Buzz".to_string() => 5,
-            "Fizz".to_string() => 3 
+            "Fizz".to_string() => 3
         };
 
         let mut gen = Generator {
@@ -134,7 +134,7 @@ mod tests {
 
     #[test]
     fn can_do_fuzz() {
-        let fizzbuzzfuzz_matcher = map! { 
+        let fizzbuzzfuzz_matcher = map! {
             "Buzz".to_string() => 5,
             "Fizz".to_string() => 3,
             "Fuzz".to_string() => 7
