@@ -1,15 +1,20 @@
 # fizzbuzz
-## A (very) complex fizzbuzz program using rust
+## :rocket: :rocket: blazingly fast fizzbuzz program using rust :rocket: :rocket:
 
 this is a fizzbuzz CLI. That is overengineered Including:
 
 - setting starting amount
+- blazingly fast :rocket:
 - setting max amount
+- blazingly fast :rocket:
 - custom definitions
+- blazingly fast :rocket:
 - progress tracking
+- blazingly fast :rocket:
 - is also a library
+- blazingly fast :rocket:
 - makes use of iterators
-- hyperspeed fast
+- blazingly fast :rocket:
 - tiny (~5kb)
 
 ## programming stuff about this
