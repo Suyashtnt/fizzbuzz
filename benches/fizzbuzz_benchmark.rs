@@ -40,6 +40,12 @@ fn criterion_benchmark(c: &mut Criterion) {
         generator.collect::<String>()
     }));
 
+    c.bench_function("10K digits fizzbuzz", |b| b.iter(|| {
+        let generator = Generator::new(None, black_box(10_000), black_box(fizzbuzz_matcher.clone()));
+        generator.collect::<String>()
+    }));
+
+
     c.bench_function("fizzbuzzbazz", |b| b.iter(|| {
         let generator = Generator::new(None, black_box(100), black_box(fizzbuzzbazz_matcher.clone()));
         generator.collect::<String>()
