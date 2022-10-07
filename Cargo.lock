@@ -773,9 +773,9 @@ checksum = "62ac7f900db32bf3fd12e0117dd3dc4da74bc52ebaac97f39668446d89694803"
 
 [[package]]
 name = "snapbox"
-version = "0.3.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc9f6603988128836d0ed032a28fac5fb049958e21578e9aed2ed05f69bb562a"
+checksum = "f98a96656eecd1621c5830831b48eb6903a9f86aaeb61b9f358a9bd462414ddd"
 dependencies = [
  "concolor",
  "content_inspector",
@@ -886,9 +886,9 @@ dependencies = [
 
 [[package]]
 name = "trycmd"
-version = "0.13.5"
+version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62a09d4fff814904dc04bf60dc19fd7ed41715e3e00dd423eb1c5636a942e2a4"
+checksum = "1859507c6593597db93d95d228b324da1f04f39014eb26ea492925c31c36a81f"
 dependencies = [
  "glob",
  "humantime",
